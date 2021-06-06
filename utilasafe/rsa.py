@@ -7,31 +7,36 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import utila
 from Crypto.PublicKey import RSA
 
 
-def create_private_key() -> bytes:
+def create_private_key(passphrase=None) -> bytes:
+    """\
+    >>> create_private_key('HelmIsSafe')
+    b'...Proc-Type: 4,ENCRYPTED...'
+    """
     rsa = RSA.generate(3072)
-    result = rsa.export_key()
+    result = rsa.export_key(passphrase=passphrase)
     return result
 
 
-def create_public_key(private: bytes) -> bytes:
+def create_public_key(private: bytes, passphrase=None) -> bytes:
     """\
     >>> create_public_key(create_private_key())
     b'-----BEGIN PUBLIC KEY...-----END PUBLIC KEY-----'
     """
-    public = create_rsa(private)
+    public = create_rsa(private, passphrase=passphrase)
     result = public.publickey().export_key()
     return result
 
 
-def create_rsa(key: bytes) -> RSA:
+def create_rsa(key: bytes, passphrase=None) -> RSA:
     """\
     >>> create_rsa(create_public_key(create_private_key()))
     RsaKey(n=...)
     """
-    rsa = RSA.import_key(key)
+    rsa = RSA.import_key(key, passphrase=passphrase)
     return rsa
 
 
