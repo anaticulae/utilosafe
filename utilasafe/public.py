@@ -6,11 +6,32 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""\
+>>> import utilasafe.rsa
+
+>>> PRIVATE = utilasafe.rsa.create_private_key()
+>>> PUBLIC = utilasafe.rsa.create_public_key(PRIVATE)
+
+>>> encrypted = encrypt(b'Hello', public=PUBLIC)
+>>> decrypt(encrypted, PRIVATE)
+b'Hello'
+"""
+
+from Crypto.Util.number import bytes_to_long
+from Crypto.Util.number import long_to_bytes
+
+import utilasafe.rsa
 
 
-def encrypt(data: bytes, public: bytes = None) -> bytes:
-    pass
+def encrypt(data: bytes, public: bytes = None) -> int:
+    rsa = utilasafe.rsa.create_rsa(public)
+    data = bytes_to_long(data)
+    result = rsa._encrypt(data)
+    return result
 
 
 def decrypt(data: bytes, private: bytes = None) -> bytes:
-    pass
+    rsa = utilasafe.rsa.create_rsa(private)
+    decrypted = rsa._decrypt(data)
+    result = long_to_bytes(decrypted)
+    return result
