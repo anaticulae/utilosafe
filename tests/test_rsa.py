@@ -9,7 +9,6 @@
 
 import os
 
-import utila
 import utilatest
 
 import utilasafe

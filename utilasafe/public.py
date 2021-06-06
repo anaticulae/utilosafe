@@ -30,12 +30,12 @@ def encrypt(data: bytes, public: bytes = None) -> int:
     else:
         rsa = utilasafe.rsa.create_rsa(public)
     data = bytes_to_long(data)
-    result = rsa._encrypt(data)
+    result = rsa._encrypt(data) # pylint:disable=W0212
     return result
 
 
 def decrypt(data: bytes, private: bytes = None) -> bytes:
     rsa = utilasafe.rsa.create_rsa(private)
-    decrypted = rsa._decrypt(data)
+    decrypted = rsa._decrypt(data) # pylint:disable=W0212
     result = long_to_bytes(decrypted)
     return result
