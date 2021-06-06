@@ -7,8 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import Crypto.Cipher
 import utila
+from Crypto.Cipher import AES
 
 import utilasafe
 import utilasafe.utils
@@ -47,5 +47,5 @@ def aes():
     pwd = utila.secure_hash(pwd, digits=32)
     pwd: bytes = pwd.encode('utf8')
     # TODO: VERIFY PROS AND CONS OF MODE
-    result = Crypto.Cipher.AES.new(pwd, Crypto.Cipher.AES.MODE_ECB)
+    result = AES.new(pwd, AES.MODE_ECB)
     return result
