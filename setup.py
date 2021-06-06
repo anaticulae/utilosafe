@@ -45,4 +45,7 @@ if __name__ == "__main__":
         packages=[
             'utilasafe',
         ],
+        entry_points={
+            'console_scripts': ['safeme_create = utilasafe.cli:main'],
+        },
     )
