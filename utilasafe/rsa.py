@@ -44,7 +44,7 @@ def write_rsa(path, key: bytes):
     utila.file_replace_binary(path, key)
 
 
-def load_rsa(path) -> RSA:
+def load_rsa(path, passphrase=None) -> RSA:
     loaded = utila.file_read_binary(path)
-    result = create_rsa(loaded)
+    result = create_rsa(loaded, passphrase=passphrase)
     return result
