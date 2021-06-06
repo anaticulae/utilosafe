@@ -20,6 +20,6 @@ from utilasafe.rsa import write_rsa
 from utilasafe.utils import public_password
 from utilasafe.utils import user_password
 
-__version__ = '0.0.0'
+__version__ = '0.1.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
