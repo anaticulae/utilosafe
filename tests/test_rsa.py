@@ -9,9 +9,13 @@
 
 import os
 
-import utilasafe.rsa
+import utila
+import utilatest
+
+import utilasafe
 
 
+@utilatest.longrun
 def test_generate_write_load_rsa(testdir):
     outfile = os.path.join(testdir.tmpdir, 'rsa')
     public = utilasafe.rsa.create_private_key()
@@ -21,3 +25,17 @@ def test_generate_write_load_rsa(testdir):
     # create RSA object
     loaded = utilasafe.load_rsa(outfile)
     assert loaded == expected
+
+
+def test_public_password(testdir, monkeypatch):
+    data = b'Helm is Hier'
+    private = utilasafe.create_private_key()
+    public = utilasafe.create_public_key(private)
+    utilasafe.write_rsa('public.pem', public)
+    path = str(os.path.join(testdir.tmpdir, 'public.pem'))
+    with monkeypatch.context() as context:
+        context.setenv('UTILASAFE_PUBLIC_KEY', path)
+        encrypted = utilasafe.encrypt_public(data)
+        assert encrypted != data
+    decrypted = utilasafe.decrypt_public(encrypted, private)
+    assert decrypted == data

@@ -20,11 +20,15 @@ b'Hello'
 from Crypto.Util.number import bytes_to_long
 from Crypto.Util.number import long_to_bytes
 
+import utilasafe
 import utilasafe.rsa
 
 
 def encrypt(data: bytes, public: bytes = None) -> int:
-    rsa = utilasafe.rsa.create_rsa(public)
+    if public is None:
+        rsa = utilasafe.public_password()
+    else:
+        rsa = utilasafe.rsa.create_rsa(public)
     data = bytes_to_long(data)
     result = rsa._encrypt(data)
     return result

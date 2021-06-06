@@ -10,6 +10,10 @@
 import math
 import os
 
+import utila
+
+import utilasafe
+
 BLOCKSIZE = 32
 
 
@@ -34,5 +38,14 @@ def remove_block(content: bytes) -> bytes:
 
 
 def user_password() -> str:
-    result = os.environ.get('UTILA_USER_PASSWORD', 'NOPASSWORD')
+    result = os.environ.get('UTILASAFE_USER_PASSWORD', 'NOPASSWORD')
+    return result
+
+
+def public_password() -> 'RSA':
+    path = os.environ.get('UTILASAFE_PUBLIC_KEY', None)
+    if not path:
+        utila.error('missing env UTILA_PUBLIC_KEY')
+        return None
+    result = utilasafe.load_rsa(path)
     return result
