@@ -33,3 +33,13 @@ def create_rsa(key: bytes) -> RSA:
     """
     rsa = RSA.import_key(key)
     return rsa
+
+
+def write_rsa(path, key: bytes):
+    utila.file_replace_binary(path, key)
+
+
+def load_rsa(path) -> RSA:
+    loaded = utila.file_read_binary(path)
+    result = create_rsa(loaded)
+    return result
