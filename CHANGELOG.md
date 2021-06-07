@@ -2,6 +2,12 @@
 
 Every noteable change is logged here.
 
+## v0.2.0
+
+### Feature
+
+* add environment vars to public API (0a21c86aa6ae)
+
 ## v0.1.1
 
 ### Fix
