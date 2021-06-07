@@ -33,7 +33,7 @@ def test_public_password(testdir, monkeypatch):
     utilasafe.write_rsa('public.pem', public)
     path = str(os.path.join(testdir.tmpdir, 'public.pem'))
     with monkeypatch.context() as context:
-        context.setenv('UTILASAFE_PUBLIC_KEY', path)
+        context.setenv(utilasafe.UTILASAFE_PUBLIC_KEY, path)
         encrypted = utilasafe.encrypt_public(data)
         assert encrypted != data
     decrypted = utilasafe.decrypt_public(encrypted, private)

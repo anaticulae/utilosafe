@@ -17,6 +17,9 @@ import utilasafe
 
 BLOCKSIZE = 32
 
+UTILASAFE_PUBLIC_KEY = 'UTILASAFE_PUBLIC_KEY'
+UTILASAFE_USER_PASSWORD = 'UTILASAFE_USER_PASSWORD'
+
 
 def create_block(content: bytes, blocksize: int = BLOCKSIZE) -> bytes:
     """\
@@ -40,15 +43,15 @@ def remove_block(content: bytes) -> bytes:
 
 @functools.lru_cache
 def user_password() -> str:
-    result = os.environ.get('UTILASAFE_USER_PASSWORD', 'NOPASSWORD')
+    result = os.environ.get(UTILASAFE_USER_PASSWORD, 'NOPASSWORD')
     return result
 
 
 @functools.lru_cache
 def public_password() -> 'RSA':
-    path = os.environ.get('UTILASAFE_PUBLIC_KEY', None)
+    path = os.environ.get(UTILASAFE_PUBLIC_KEY, None)
     if not path:
-        utila.error('missing env UTILA_PUBLIC_KEY')
+        utila.error(f'missing env {UTILASAFE_PUBLIC_KEY}')
         return None
     result = utilasafe.load_rsa(path)
     return result
