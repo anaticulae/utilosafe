@@ -17,9 +17,6 @@
 b'Hello'
 """
 
-from Crypto.Util.number import bytes_to_long
-from Crypto.Util.number import long_to_bytes
-
 import utilasafe
 import utilasafe.rsa
 
@@ -31,7 +28,7 @@ def encrypt(data: bytes, public: bytes = None) -> int:
         rsa = utilasafe.public_password()
     else:
         rsa = utilasafe.rsa.create_rsa(public)
-    longs = [bytes_to_long(block) for block in split(data)]
+    longs = [int.from_bytes(block, 'big') for block in split(data)]
     encrypted = [rsa._encrypt(block) for block in longs]  # pylint:disable=W0212
     strings = [str(block) for block in encrypted]
     result = '\n'.join(strings)
@@ -42,7 +39,7 @@ def decrypt(data: bytes, private: bytes = None) -> bytes:
     rsa = utilasafe.rsa.create_rsa(private)
     ints = [int(block) for block in data.splitlines()]
     decrypted = [rsa._decrypt(block) for block in ints]  # pylint:disable=W0212
-    byte = [long_to_bytes(block) for block in decrypted]
+    byte = [block.to_bytes() for block in decrypted]
     # remove magic start bit
     nomagic = [item[1:] for item in byte]
     result = b''.join(nomagic)
