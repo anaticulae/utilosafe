@@ -10,10 +10,12 @@
 import os
 
 import utila
+import utilatest
 
 import utilasafe
 
 
+@utilatest.longrun
 def test_generate_cli(testdir):
     utila.file_create('password', 'helm')
     utila.run('safeme_create < password')
