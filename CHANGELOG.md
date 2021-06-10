@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.3.0
+
+### Feature
+
+* reduce bits to increase speed (f8ffa8843b73)
+
+### Fix
+
+* ensure that DSA is imported (2f279b17138e)
+* ensure decrypting large data (63898514bcfd)
+
 ## v0.2.0
 
 ### Feature
