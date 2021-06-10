@@ -8,6 +8,7 @@
 # =============================================================================
 
 import utila
+from Crypto.PublicKey import DSA  # pylint:disable=W0611
 from Crypto.PublicKey import RSA
 
 
