@@ -11,12 +11,12 @@ import utila
 from Crypto.PublicKey import RSA
 
 
-def create_private_key(passphrase=None) -> bytes:
+def create_private_key(passphrase=None, bits: int = 1024) -> bytes:
     """\
     >>> create_private_key('HelmIsSafe')
     b'...Proc-Type: 4,ENCRYPTED...'
     """
-    rsa = RSA.generate(3072)
+    rsa = RSA.generate(bits=bits)
     result = rsa.export_key(passphrase=passphrase)
     return result
 
