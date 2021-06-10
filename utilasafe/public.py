@@ -23,19 +23,37 @@ from Crypto.Util.number import long_to_bytes
 import utilasafe
 import utilasafe.rsa
 
+BLOCKSIZE = 32
+
 
 def encrypt(data: bytes, public: bytes = None) -> int:
     if public is None:
         rsa = utilasafe.public_password()
     else:
         rsa = utilasafe.rsa.create_rsa(public)
-    data = bytes_to_long(data)
-    result = rsa._encrypt(data)  # pylint:disable=W0212
+
+    encrypted = [
+        str(rsa._encrypt(bytes_to_long(block))) for block in split(data)  # pylint:disable=W0212
+    ]
+    result = '\n'.join(encrypted)
     return result
 
 
 def decrypt(data: bytes, private: bytes = None) -> bytes:
     rsa = utilasafe.rsa.create_rsa(private)
-    decrypted = rsa._decrypt(data)  # pylint:disable=W0212
-    result = long_to_bytes(decrypted)
+    decrypted = [
+        long_to_bytes(rsa._decrypt(int(block))) for block in data.splitlines()  # pylint:disable=W0212
+    ]
+    # remove magic start bit
+    nomagic = [item[1:] for item in decrypted]
+    result = b''.join(nomagic)
     return result
+
+
+def split(data, length=BLOCKSIZE):
+    # TODO: REPLACE WITH PYTHONIC ONE
+    start = 0
+    while data[start:start + length]:
+        # add magic start bit to avoid cutting \x00 when converting to long
+        yield b'\x01' + data[start:start + length]
+        start += BLOCKSIZE
