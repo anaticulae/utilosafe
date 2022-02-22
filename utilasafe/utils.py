@@ -26,7 +26,7 @@ def create_block(content: bytes, blocksize: int = BLOCKSIZE) -> bytes:
     >>> create_block(b'abc' * 15)
     b'abcabcabcabcabcabcabcabcabcabcabcabcabcabcabc                   '
     """
-    if len(content) % blocksize == 0:
+    if not len(content) % blocksize:
         return content
     missing = math.ceil(len(content) / blocksize) * blocksize - len(content)
     content = content + b' ' * missing
