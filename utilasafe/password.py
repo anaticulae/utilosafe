@@ -8,7 +8,6 @@
 # =============================================================================
 
 import utila
-from Crypto.Cipher import AES
 
 import utilasafe
 import utilasafe.utils
@@ -47,5 +46,6 @@ def aes():
     pwd = utila.secure_hash(pwd, digits=32)
     pwd: bytes = pwd.encode('utf8')
     # TODO: VERIFY PROS AND CONS OF MODE
+    from Crypto.Cipher import AES
     result = AES.new(pwd, AES.MODE_ECB)
     return result

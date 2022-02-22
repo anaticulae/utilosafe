@@ -8,8 +8,6 @@
 # =============================================================================
 
 import utila
-from Crypto.PublicKey import DSA  # pylint:disable=W0611
-from Crypto.PublicKey import RSA
 
 
 def create_private_key(passphrase=None, bits: int = 1024) -> bytes:
@@ -17,7 +15,7 @@ def create_private_key(passphrase=None, bits: int = 1024) -> bytes:
     >>> create_private_key('HelmIsSafe')
     b'...Proc-Type: 4,ENCRYPTED...'
     """
-    rsa = RSA.generate(bits=bits)
+    rsa = import_rsa().generate(bits=bits)
     result = rsa.export_key(passphrase=passphrase)
     return result
 
@@ -32,12 +30,12 @@ def create_public_key(private: bytes, passphrase=None) -> bytes:
     return result
 
 
-def create_rsa(key: bytes, passphrase=None) -> RSA:
+def create_rsa(key: bytes, passphrase=None) -> 'RSA':
     """\
     >>> create_rsa(create_public_key(create_private_key()))
     RsaKey(n=...)
     """
-    rsa = RSA.import_key(key, passphrase=passphrase)
+    rsa = import_rsa().import_key(key, passphrase=passphrase)
     return rsa
 
 
@@ -45,7 +43,12 @@ def write_rsa(path, key: bytes):
     utila.file_replace_binary(path, key)
 
 
-def load_rsa(path, passphrase=None) -> RSA:
+def load_rsa(path, passphrase=None) -> 'RSA':
     loaded = utila.file_read_binary(path)
     result = create_rsa(loaded, passphrase=passphrase)
     return result
+
+
+def import_rsa():
+    from Crypto.PublicKey import RSA
+    return RSA
