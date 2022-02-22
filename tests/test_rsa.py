@@ -32,7 +32,7 @@ def test_generate_write_load_rsa(testdir):
 block = utilasafe.public.split
 
 
-@utilatest.longrun
+@utilatest.nightly
 def test_write_large_file(testdir):
     loaded = utila.file_read_binary(power.BACHELOR128_PDF)
     private = utilasafe.create_private_key()
