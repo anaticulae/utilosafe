@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.3.1
+
+### Fix
+
+* import on runtime (fd9be45f7eca)
+
+### Documentation
+
+* adjust modules path (45cf6e42c58a)
+* Happy New Year! (d9ddb6326913)
+
 ## v0.3.0
 
 ### Feature
