@@ -8,8 +8,8 @@
 # =============================================================================
 
 import math
-import os
 
+import configo
 import utila
 
 import utilasafe
@@ -42,13 +42,13 @@ def remove_block(content: bytes) -> bytes:
 
 @utila.cacheme
 def user_password() -> str:
-    result = os.environ.get(UTILASAFE_USER_PASSWORD, 'NOPASSWORD')
+    result = configo.env(UTILASAFE_USER_PASSWORD, 'NOPASSWORD')
     return result
 
 
 @utila.cacheme
 def public_password() -> 'RSA':
-    path = os.environ.get(UTILASAFE_PUBLIC_KEY, None)
+    path = configo.env(UTILASAFE_PUBLIC_KEY, None)
     if not path:
         utila.error(f'missing env {UTILASAFE_PUBLIC_KEY}')
         return None
