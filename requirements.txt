@@ -10,4 +10,4 @@
 utila>=2.85.3<3.0.0
 configo>=0.20.0<1.0.0
 
-pycryptodome==3.10.1
+cryptography==37.0.4
