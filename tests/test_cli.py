@@ -7,18 +7,35 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import functools
 import os
 
 import utila
 import utilatest
 
 import utilasafe
+import utilasafe.cli
+
+run = functools.partial(
+    utilatest.run_cov,
+    process='safeme_create',
+    main=utilasafe.cli.main,
+    expect=True,
+)
 
 
 @utilatest.longrun
-def test_generate_cli(testdir):
-    utila.file_create('password', 'helm')
-    utila.run('safeme_create < password')
+def test_generate_cli(testdir, monkeypatch):
+    password = b'helm'
+    utila.file_create_binary('password', password)
+    with monkeypatch.context() as context:
+        context.setattr(
+            utilasafe.cli,
+            'insert_password',
+            lambda: password,
+        )
+        # safeme_create < password
+        run('', mp=monkeypatch)
     private = str(testdir.tmpdir.join('private.pem'))
     loaded = utilasafe.load_rsa_private(  # nosec
         private,
