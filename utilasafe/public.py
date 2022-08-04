@@ -18,9 +18,12 @@ b'Hello'
 """
 
 import utilasafe.rsa
+import utilasafe.utils
 
 
-def encrypt(plaintext: bytes, public: bytes) -> int:
+def encrypt(plaintext: bytes, public: bytes = None) -> int:
+    if public is None:
+        public = utilasafe.utils.public_password()
     result = utilasafe.rsa.encrypt(
         plaintext,
         public,
