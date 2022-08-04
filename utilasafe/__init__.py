@@ -11,8 +11,8 @@ import os
 
 from utilasafe.password import decrypt as decrypt_password
 from utilasafe.password import encrypt as encrypt_password
-from utilasafe.public import decrypt as decrypt_public
-from utilasafe.public import encrypt as encrypt_public
+from utilasafe.public import decrypt
+from utilasafe.public import encrypt
 from utilasafe.rsa import create_private_key
 from utilasafe.rsa import create_public_key
 from utilasafe.rsa import load_rsa_private
