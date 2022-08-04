@@ -19,8 +19,11 @@ import utilasafe
 def test_generate_cli(testdir):
     utila.file_create('password', 'helm')
     utila.run('safeme_create < password')
-    private = os.path.join(testdir.tmpdir, 'private.pem')
-    loaded = utilasafe.load_rsa(private, passphrase='helm')  # nosec
+    private = str(testdir.tmpdir.join('private.pem'))
+    loaded = utilasafe.load_rsa_private(  # nosec
+        private,
+        passphrase=b'helm',
+    )
     assert loaded
     assert os.path.exists('private.pem')
     assert os.path.exists('public.pem')

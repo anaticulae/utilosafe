@@ -7,29 +7,25 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import os
-
 import power
 import utila
 import utilatest
 
 import utilasafe
 import utilasafe.public
+import utilasafe.rsa
 
 
 @utilatest.longrun
 def test_generate_write_load_rsa(testdir):
-    outfile = os.path.join(testdir.tmpdir, 'rsa')
-    public = utilasafe.rsa.create_private_key()
-    expected = utilasafe.rsa.create_rsa(public)
+    outfile = testdir.tmpdir.join('rsa')
+    private = utilasafe.create_private_key()
+    expected = utilasafe.create_public_key(private)
     # write file
-    utilasafe.write_rsa(outfile, public)
+    utilasafe.write_rsa(outfile, expected)
     # create RSA object
-    loaded = utilasafe.load_rsa(outfile)
+    loaded = utilasafe.rsa.dump_public_key(utilasafe.load_rsa_public(outfile))
     assert loaded == expected
-
-
-block = utilasafe.public.split
 
 
 @utilatest.nightly
@@ -38,9 +34,9 @@ def test_write_large_file(testdir):
     private = utilasafe.create_private_key()
     public = utilasafe.create_public_key(private)
     # write file
-    encrypted = utilasafe.encrypt_public(loaded, public)
+    encrypted = utilasafe.encrypt(loaded, public)
     utila.file_create('blabla', encrypted)
-    decrypted = utilasafe.decrypt_public(encrypted, private)
+    decrypted = utilasafe.decrypt(encrypted, private)
     assert len(decrypted) == len(loaded)
     assert decrypted == loaded
 
@@ -51,8 +47,8 @@ def test_public_special_bytes():
             b'\xdd2\x12\x9f#\xe0\x98\xd0I\xedv\xd3-\xa6\xa6')
     private = utilasafe.create_private_key()
     public = utilasafe.create_public_key(private)
-    encrypted = utilasafe.encrypt_public(data, public)
-    decrypted = utilasafe.decrypt_public(encrypted, private)
+    encrypted = utilasafe.encrypt(data, public)
+    decrypted = utilasafe.decrypt(encrypted, private)
     assert decrypted == data
 
 
@@ -61,10 +57,11 @@ def test_public_password(testdir, monkeypatch):
     private = utilasafe.create_private_key()
     public = utilasafe.create_public_key(private)
     utilasafe.write_rsa('public.pem', public)
-    path = str(os.path.join(testdir.tmpdir, 'public.pem'))
+    path = str(testdir.tmpdir.join('public.pem'))
     with monkeypatch.context() as context:
+        utilasafe.public_password.cache_clear()
         context.setenv(utilasafe.UTILASAFE_PUBLIC_KEY, path)
-        encrypted = utilasafe.encrypt_public(data)
+        encrypted = utilasafe.encrypt(data)
         assert encrypted != data
-    decrypted = utilasafe.decrypt_public(encrypted, private)
+    decrypted = utilasafe.decrypt(encrypted, key=private)
     assert decrypted == data

@@ -52,5 +52,5 @@ def public_password() -> 'RSA':
     if not path:
         utila.error(f'missing env {UTILASAFE_PUBLIC_KEY}')
         return None
-    result = utilasafe.load_rsa(path)
+    result = utilasafe.load_rsa_public(path)
     return result
