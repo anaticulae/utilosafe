@@ -76,6 +76,11 @@ def create_public_key(private: bytes, passphrase=None) -> bytes:
         password=passphrase,
     )
     public = result.public_key()
+    result = dump_public_key(public)
+    return result
+
+
+def dump_public_key(public) -> bytes:
     result = public.public_bytes(
         encoding=serialization.Encoding.OpenSSH,
         format=serialization.PublicFormat.OpenSSH,
@@ -113,6 +118,6 @@ def load_rsa_public(path) -> '_SSH_PUBLIC_KEY_TYPES':
 def getpassword(passphrase: bytes = None):
     if not passphrase:
         return serialization.NoEncryption()
-    assert isinstance(passphrase, bytes)
+    assert isinstance(passphrase, bytes), passphrase
     result = serialization.BestAvailableEncryption(password=passphrase)
     return result
