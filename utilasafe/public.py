@@ -17,39 +17,21 @@
 b'Hello'
 """
 
-import utilasafe
 import utilasafe.rsa
 
-BLOCKSIZE = 32
 
-
-def encrypt(data: bytes, public: bytes = None) -> int:
-    if public is None:
-        rsa = utilasafe.public_password()
-    else:
-        rsa = utilasafe.rsa.create_rsa(public)
-    longs = [int.from_bytes(block, 'big') for block in split(data)]
-    encrypted = [rsa._encrypt(block) for block in longs]  # pylint:disable=W0212
-    strings = [str(block) for block in encrypted]
-    result = '\n'.join(strings)
+def encrypt(plaintext: bytes, public: bytes) -> int:
+    result = utilasafe.rsa.encrypt(
+        plaintext,
+        public,
+    )
     return result
 
 
-def decrypt(data: bytes, private: bytes = None) -> bytes:
-    rsa = utilasafe.rsa.create_rsa(private)
-    ints = [int(block) for block in data.splitlines()]
-    decrypted = [rsa._decrypt(block) for block in ints]  # pylint:disable=W0212
-    byte = [block.to_bytes() for block in decrypted]
-    # remove magic start bit
-    nomagic = [item[1:] for item in byte]
-    result = b''.join(nomagic)
+def decrypt(ciphertext: bytes, key: str, passphrase: bytes = None) -> bytes:
+    result = utilasafe.rsa.decrypt(
+        ciphertext,
+        key,
+        passphrase=passphrase,
+    )
     return result
-
-
-def split(data, length=BLOCKSIZE):
-    # TODO: REPLACE WITH PYTHONIC ONE
-    start = 0
-    while data[start:start + length]:
-        # add magic start bit to avoid cutting \x00 when converting to long
-        yield b'\x01' + data[start:start + length]
-        start += BLOCKSIZE
