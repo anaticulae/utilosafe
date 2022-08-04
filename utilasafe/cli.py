@@ -20,7 +20,11 @@ def main():
     cwd = os.getcwd()
 
     password = input('password\n')
-    password = password.strip() if password else None
+    if password:
+        password = password.strip()
+        password = password.encode('utf8')
+    else:
+        password = None
 
     path_private = os.path.join(cwd, 'private.pem')
     private = utilasafe.rsa.create_private_key(passphrase=password)
