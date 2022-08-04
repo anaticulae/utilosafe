@@ -55,11 +55,13 @@ def create_private_key(passphrase: bytes = None, bits: int = 1024) -> bytes:
         public_exponent=PUBLIC_EXPONENT,
         key_size=bits,
     )
-    password = getpassword(passphrase=passphrase)
+    algo = serialization.NoEncryption()
+    if passphrase:
+        algo = serialization.BestAvailableEncryption(password=passphrase)  # pylint:disable=R0204
     result = private.private_bytes(
         encoding=serialization.Encoding.PEM,
         format=serialization.PrivateFormat.OpenSSH,
-        encryption_algorithm=password,
+        encryption_algorithm=algo,
     )
     return result
 
@@ -68,9 +70,9 @@ def create_public_key(private: bytes, passphrase=None) -> bytes:
     """\
     >>> create_public_key(create_private_key())
     b'ssh-rsa ...=='
+    >>> create_public_key(create_private_key(passphrase=b'helm'), b'helm')
+    b'ssh-rsa ...=='
     """
-    if passphrase:
-        passphrase = getpassword(passphrase)
     result = serialization.load_ssh_private_key(
         data=private,
         password=passphrase,
@@ -100,8 +102,6 @@ def load_rsa_private(
         loaded = utila.file_read_binary(path)
     else:
         loaded = path
-    if passphrase:
-        passphrase = getpassword(passphrase)
     result = serialization.load_ssh_private_key(
         data=loaded,
         password=passphrase,
@@ -112,12 +112,4 @@ def load_rsa_private(
 def load_rsa_public(path) -> '_SSH_PUBLIC_KEY_TYPES':
     data = utila.file_read_binary(path)
     result = serialization.load_ssh_public_key(data=data)
-    return result
-
-
-def getpassword(passphrase: bytes = None):
-    if not passphrase:
-        return serialization.NoEncryption()
-    assert isinstance(passphrase, bytes), passphrase
-    result = serialization.BestAvailableEncryption(password=passphrase)
     return result
