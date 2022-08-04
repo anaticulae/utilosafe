@@ -6,12 +6,44 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
+"""\
+>>> import utilasafe.rsa
 
+>>> PRIVATE = utilasafe.rsa.create_private_key()
+>>> PUBLIC = utilasafe.rsa.create_public_key(PRIVATE)
+
+>>> encrypted = encrypt(b'Hello', public=PUBLIC)
+>>> decrypt(encrypted, PRIVATE)
+b'Hello'
+"""
+
+import cryptography.hazmat.primitives.asymmetric.padding as padding
 import cryptography.hazmat.primitives.asymmetric.rsa as rsa
 import cryptography.hazmat.primitives.serialization as serialization
 import utila
 
 PUBLIC_EXPONENT = 65537
+
+PADDING = padding.PKCS1v15()
+
+
+def encrypt(plaintext: bytes, public: bytes) -> int:
+    if isinstance(public, bytes):
+        public = serialization.load_ssh_public_key(public)
+    result = public.encrypt(
+        plaintext=plaintext,
+        padding=PADDING,
+    )
+    return result
+
+
+def decrypt(ciphertext: bytes, path: str, passphrase: bytes = None) -> bytes:
+    loaded = load_rsa_private(path, passphrase=passphrase)
+    result = loaded.decrypt(
+        ciphertext=ciphertext,
+        padding=PADDING,
+    )
+    return result
 
 
 def create_private_key(passphrase: bytes = None, bits: int = 1024) -> bytes:
@@ -59,10 +91,15 @@ def load_rsa_private(
     path,
     passphrase: bytes = None,
 ) -> '_SSH_PRIVATE_KEY_TYPES':
-    loaded = utila.file_read_binary(path)
+    if isinstance(path, str):
+        loaded = utila.file_read_binary(path)
+    else:
+        loaded = path
+    if passphrase:
+        passphrase = getpassword(passphrase)
     result = serialization.load_ssh_private_key(
         data=loaded,
-        password=getpassword(passphrase),
+        password=passphrase,
     )
     return result
 
