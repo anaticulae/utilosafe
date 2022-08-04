@@ -15,7 +15,8 @@ from utilasafe.public import decrypt as decrypt_public
 from utilasafe.public import encrypt as encrypt_public
 from utilasafe.rsa import create_private_key
 from utilasafe.rsa import create_public_key
-from utilasafe.rsa import load_rsa
+from utilasafe.rsa import load_rsa_private
+from utilasafe.rsa import load_rsa_public
 from utilasafe.rsa import write_rsa
 from utilasafe.utils import UTILASAFE_PUBLIC_KEY
 from utilasafe.utils import UTILASAFE_USER_PASSWORD

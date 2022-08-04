@@ -7,48 +7,75 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import cryptography.hazmat.primitives.asymmetric.rsa as rsa
+import cryptography.hazmat.primitives.serialization as serialization
 import utila
 
+PUBLIC_EXPONENT = 65537
 
-def create_private_key(passphrase=None, bits: int = 1024) -> bytes:
-    """\
-    >>> create_private_key('HelmIsSafe')
-    b'...Proc-Type: 4,ENCRYPTED...'
+
+def create_private_key(passphrase: bytes = None, bits: int = 1024) -> bytes:
+    r"""\
+    >>> create_private_key(b'HelmIsSafe')
+    b'-----BEGIN OPENSSH PRIVATE KEY-----...---END OPENSSH PRIVATE KEY-----\n'
     """
-    rsa = import_rsa().generate(bits=bits)
-    result = rsa.export_key(passphrase=passphrase)
+    private = rsa.generate_private_key(
+        public_exponent=PUBLIC_EXPONENT,
+        key_size=bits,
+    )
+    password = getpassword(passphrase=passphrase)
+    result = private.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.OpenSSH,
+        encryption_algorithm=password,
+    )
     return result
 
 
 def create_public_key(private: bytes, passphrase=None) -> bytes:
     """\
     >>> create_public_key(create_private_key())
-    b'-----BEGIN PUBLIC KEY...-----END PUBLIC KEY-----'
+    b'ssh-rsa ...=='
     """
-    public = create_rsa(private, passphrase=passphrase)
-    result = public.publickey().export_key()
+    if passphrase:
+        passphrase = getpassword(passphrase)
+    result = serialization.load_ssh_private_key(
+        data=private,
+        password=passphrase,
+    )
+    public = result.public_key()
+    result = public.public_bytes(
+        encoding=serialization.Encoding.OpenSSH,
+        format=serialization.PublicFormat.OpenSSH,
+    )
     return result
-
-
-def create_rsa(key: bytes, passphrase=None) -> 'RSA':
-    """\
-    >>> create_rsa(create_public_key(create_private_key()))
-    RsaKey(n=...)
-    """
-    rsa = import_rsa().import_key(key, passphrase=passphrase)
-    return rsa
 
 
 def write_rsa(path, key: bytes):
     utila.file_replace_binary(path, key)
 
 
-def load_rsa(path, passphrase=None) -> 'RSA':
+def load_rsa_private(
+    path,
+    passphrase: bytes = None,
+) -> '_SSH_PRIVATE_KEY_TYPES':
     loaded = utila.file_read_binary(path)
-    result = create_rsa(loaded, passphrase=passphrase)
+    result = serialization.load_ssh_private_key(
+        data=loaded,
+        password=getpassword(passphrase),
+    )
     return result
 
 
-def import_rsa():
-    from Crypto.PublicKey import RSA
-    return RSA
+def load_rsa_public(path) -> '_SSH_PUBLIC_KEY_TYPES':
+    data = utila.file_read_binary(path)
+    result = serialization.load_ssh_public_key(data=data)
+    return result
+
+
+def getpassword(passphrase: bytes = None):
+    if not passphrase:
+        return serialization.NoEncryption()
+    assert isinstance(passphrase, bytes)
+    result = serialization.BestAvailableEncryption(password=passphrase)
+    return result
