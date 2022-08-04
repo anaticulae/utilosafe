@@ -18,13 +18,7 @@ import utilasafe.rsa
 
 def main():
     cwd = os.getcwd()
-
-    password = input('password\n')
-    if password:
-        password = password.strip()
-        password = password.encode('utf8')
-    else:
-        password = None
+    password = insert_password()
 
     path_private = os.path.join(cwd, 'private.pem')
     private = utilasafe.rsa.create_private_key(passphrase=password)
@@ -37,3 +31,13 @@ def main():
     utilasafe.write_rsa(path_public, public)
 
     sys.exit(utila.SUCCESS)
+
+
+def insert_password():
+    password = input('password\n')
+    if password:
+        password = password.strip()
+        password = password.encode('utf8')
+    else:
+        password = None
+    return password
