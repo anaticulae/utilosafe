@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v0.4.0
+
+### Feature
+
+* use public key if no key is given (c574e1d96e08)
+* use public as a wrapper to may change algo later (0e4e0a16242b)
+* adjust interface to new API (340aef366bba)
+* use OpenSSL for encryption (6cf7a7920602)
+
+### Fix
+
+* adjust password initialization (5b7a07f3be00)
+* new API requires bytes (fcedc98d5d5e)
+
 ## v0.3.1
 
 ### Fix

@@ -23,6 +23,6 @@ from utilasafe.utils import UTILASAFE_USER_PASSWORD
 from utilasafe.utils import public_password
 from utilasafe.utils import user_password
 
-__version__ = '0.3.1'
+__version__ = '0.4.0'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
