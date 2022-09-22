@@ -6,3 +6,12 @@
 # use or distribution is an offensive act against international law and may
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
+
+import sys
+
+import pytest
+
+nolinux = pytest.mark.skipif(
+    'win' not in sys.platform,
+    reason='_cffi_backend does not work on linux',
+)

@@ -11,11 +11,13 @@ import power
 import utila
 import utilatest
 
+import tests
 import utilasafe
 import utilasafe.public
 import utilasafe.rsa
 
 
+@tests.nolinux
 @utilatest.longrun
 def test_generate_write_load_rsa(testdir):
     outfile = testdir.tmpdir.join('rsa')
@@ -28,6 +30,7 @@ def test_generate_write_load_rsa(testdir):
     assert loaded == expected
 
 
+@tests.nolinux
 @utilatest.nightly
 def test_write_large_file(testdir):
     loaded = utila.file_read_binary(power.BACHELOR128_PDF)
@@ -41,6 +44,7 @@ def test_write_large_file(testdir):
     assert decrypted == loaded
 
 
+@tests.nolinux
 def test_public_special_bytes():
     """Do not remove starting \x00-zero bits when using rsa decryption."""
     data = (b'\x00\x00\x00\x00\xf4\x0b;\xc77\xdd\xe5\x97\x08'
@@ -52,6 +56,7 @@ def test_public_special_bytes():
     assert decrypted == data
 
 
+@tests.nolinux
 def test_public_password(testdir, monkeypatch):
     data = b'Helm is Hier'
     private = utilasafe.create_private_key()
