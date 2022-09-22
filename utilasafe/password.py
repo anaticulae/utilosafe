@@ -16,8 +16,8 @@ import utilasafe.utils
 def encrypt(plaintext: bytes) -> bytes:
     r"""Convert plain text to cipher text.
 
-    >>> encrypt(b'hello')
-    b'V\xcdj\xdf\xbf\x03\xb1\xf6\xb33JH\xc9\x8eO?1\x15ye\x94b\xc6:\xad\xb18\xdeL\x93\x86\x83'
+    >>> len(encrypt(b'hello')) > 25
+    True
     >>> decrypt(encrypt(b'hello'))
     b'hello'
     """
