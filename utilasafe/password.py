@@ -46,6 +46,19 @@ def aes():
     pwd = utila.secure_hash(pwd, digits=32)
     pwd: bytes = pwd.encode('utf8')
     # TODO: VERIFY PROS AND CONS OF MODE
-    from Crypto.Cipher import AES
+    try:
+        from Crypto.Cipher import AES
+    except ImportError:
+        utila.error('could not import Crypto.Cipher')
+        return NoPassword()
     result = AES.new(pwd, AES.MODE_ECB)
     return result
+
+
+class NoPassword:
+
+    def decrypt(self, ciphertext):  # pylint:disable=R0201
+        return ciphertext
+
+    def encrypt(self, plaintext):  # pylint:disable=R0201
+        return plaintext
