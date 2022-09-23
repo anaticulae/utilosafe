@@ -2,6 +2,17 @@
 
 Every noteable change is logged here.
 
+## v0.4.1 (2022-09-23)
+
+### Fix
+
+* ensure working without Crypto package (4c15cb1ee5f0)
+
+### Chore
+
+* add Jenkinsfile (1beaea444306)
+* upgrade requirements.txt (b424d0993ba5)
+
 ## v0.4.0
 
 ### Feature
