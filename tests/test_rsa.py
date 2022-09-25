@@ -8,6 +8,7 @@
 # =============================================================================
 
 import power
+import pytest
 import utila
 import utilatest
 
@@ -30,6 +31,7 @@ def test_generate_write_load_rsa(testdir):
     assert loaded == expected
 
 
+@pytest.mark.xfail(reason='rework large encryption')
 @tests.nolinux
 @utilatest.nightly
 def test_write_large_file(testdir):
