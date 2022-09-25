@@ -13,7 +13,6 @@ import os
 import utila
 import utilatest
 
-import tests
 import utilasafe
 import utilasafe.cli
 
@@ -25,7 +24,6 @@ run = functools.partial(
 )
 
 
-@tests.nolinux
 @utilatest.longrun
 def test_generate_cli(testdir, monkeypatch):
     password = b'helm'
