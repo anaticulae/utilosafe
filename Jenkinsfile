@@ -1,8 +1,8 @@
 pipeline {
     agent {
         docker {
-            image '169.254.149.20:6001/arch_python_baw:0.8.1'
-            args '--privileged -u root -v $WORKSPACE:/var/workdir'
+            image '169.254.149.20:6001/arch_python_baw:0.10.0'
+            args  '--privileged -u root -v $WORKSPACE:/var/workdir'
         }
     }
 
@@ -20,8 +20,7 @@ pipeline {
         }
         stage('doctest'){
             steps{
-                echo 'skip doctest'
-                //sh 'baw test docs -n1'
+                sh 'baw test docs -n1'
             }
         }
         stage('fast'){
@@ -41,10 +40,8 @@ pipeline {
         }
         stage('nightly'){
             steps{
-                echo 'skip nightly'
-                // TODO: ADD JUNIT OPTION TO BAW
-                //sh 'baw test nightly -n16 --cov --junit_xml=report.xml'
-                //junit '**/report.xml'
+                sh 'baw test nightly -n16 --cov --junit_xml=report.xml'
+                junit '**/report.xml'
             }
         }
         stage('release'){
