@@ -17,10 +17,10 @@
 b'Hello'
 """
 
-import cryptography.hazmat.primitives.asymmetric.padding as padding
-import cryptography.hazmat.primitives.asymmetric.rsa as rsa
-import cryptography.hazmat.primitives.serialization as serialization
 import utila
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric import padding
+from cryptography.hazmat.primitives.asymmetric import rsa
 
 PUBLIC_EXPONENT = 65537
 
