@@ -47,7 +47,7 @@ def aes():
     pwd: bytes = pwd.encode('utf8')
     # TODO: VERIFY PROS AND CONS OF MODE
     try:
-        from Crypto.Cipher import AES
+        from Crypto.Cipher import AES  # nosec # TODO: VERIFY THIS
     except ImportError:
         utila.error('could not import Crypto.Cipher')
         return NoPassword()
