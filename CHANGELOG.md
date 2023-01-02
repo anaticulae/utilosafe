@@ -2,6 +2,19 @@
 
 Every noteable change is logged here.
 
+## v0.4.3 (2023-01-02)
+
+### Fix
+
+* solve linter error (c74c30ec1898)
+
+### Chore
+
+* use quick install (c1c9042b9ec2)
+* make requirements less strict (7bcac2ea63bf)
+* upgrade requirements.txt (36e87450eab8)
+* upgrade pipeline (fc147b9a5842)
+
 ## v0.4.2 (2022-09-25)
 
 ### Chore
