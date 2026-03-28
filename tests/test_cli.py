@@ -10,34 +10,34 @@
 import functools
 import os
 
-import utila
-import utilatest
+import utilo
+import utilosafe.cli
+import utilotest
 
-import utilasafe
-import utilasafe.cli
+import utilosafe
 
 run = functools.partial(
-    utilatest.run_cov,
+    utilotest.run_cov,
     process='safeme_create',
-    main=utilasafe.cli.main,
+    main=utilosafe.cli.main,
     expect=True,
 )
 
 
-@utilatest.longrun
+@utilotest.longrun
 def test_generate_cli(testdir, monkeypatch):
     password = b'helm'
-    utila.file_create_binary('password', password)
+    utilo.file_create_binary('password', password)
     with monkeypatch.context() as context:
         context.setattr(
-            utilasafe.cli,
+            utilosafe.cli,
             'insert_password',
             lambda: password,
         )
         # safeme_create < password
         run('', mp=monkeypatch)
     private = str(testdir.tmpdir.join('private.pem'))
-    loaded = utilasafe.load_rsa_private(  # nosec
+    loaded = utilosafe.load_rsa_private(  # nosec
         private,
         passphrase=b'helm',
     )

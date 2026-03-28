@@ -7,17 +7,17 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 """\
->>> import utilasafe.rsa
+>>> import utilosafe.rsa
 
->>> PRIVATE = utilasafe.rsa.create_private_key()
->>> PUBLIC = utilasafe.rsa.create_public_key(PRIVATE)
+>>> PRIVATE = utilosafe.rsa.create_private_key()
+>>> PUBLIC = utilosafe.rsa.create_public_key(PRIVATE)
 
 >>> encrypted = encrypt(b'Hello', public=PUBLIC)
 >>> decrypt(encrypted, PRIVATE)
 b'Hello'
 """
 
-import utila
+import utilo
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives.asymmetric import rsa
@@ -91,7 +91,7 @@ def dump_public_key(public) -> bytes:
 
 
 def write_rsa(path, key: bytes):
-    utila.file_replace_binary(path, key)
+    utilo.file_replace_binary(path, key)
 
 
 def load_rsa_private(
@@ -99,7 +99,7 @@ def load_rsa_private(
     passphrase: bytes = None,
 ) -> '_SSH_PRIVATE_KEY_TYPES':
     if isinstance(path, str):
-        loaded = utila.file_read_binary(path)
+        loaded = utilo.file_read_binary(path)
     else:
         loaded = path
     result = serialization.load_ssh_private_key(
@@ -110,6 +110,6 @@ def load_rsa_private(
 
 
 def load_rsa_public(path) -> '_SSH_PUBLIC_KEY_TYPES':
-    data = utila.file_read_binary(path)
+    data = utilo.file_read_binary(path)
     result = serialization.load_ssh_public_key(data=data)
     return result

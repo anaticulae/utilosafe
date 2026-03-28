@@ -7,10 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
+import utilosafe.utils
 
-import utilasafe
-import utilasafe.utils
+import utilosafe
 
 
 def encrypt(plaintext: bytes) -> bytes:
@@ -26,7 +26,7 @@ def encrypt(plaintext: bytes) -> bytes:
             encoding='utf8',
             errors='xmlcharrefreplace',
         )
-    plaintext = utilasafe.utils.create_block(plaintext)
+    plaintext = utilosafe.utils.create_block(plaintext)
     ciphertext = aes().encrypt(plaintext)
     return ciphertext
 
@@ -34,22 +34,22 @@ def encrypt(plaintext: bytes) -> bytes:
 def decrypt(ciphertext: bytes, string: bool = False) -> bytes:
     """Convert cipher text to plain text."""
     plaintext = aes().decrypt(ciphertext)
-    plaintext = utilasafe.utils.remove_block(plaintext)
+    plaintext = utilosafe.utils.remove_block(plaintext)
     if string:
         plaintext: str = plaintext.decode(encoding='utf8')
     return plaintext
 
 
 def aes():
-    pwd = utilasafe.user_password()
+    pwd = utilosafe.user_password()
     # normalize password
-    pwd = utila.secure_hash(pwd, digits=32)
+    pwd = utilo.secure_hash(pwd, digits=32)
     pwd: bytes = pwd.encode('utf8')
     # TODO: VERIFY PROS AND CONS OF MODE
     try:
         from Crypto.Cipher import AES  # nosec # TODO: VERIFY THIS
     except ImportError:
-        utila.error('could not import Crypto.Cipher')
+        utilo.error('could not import Crypto.Cipher')
         return NoPassword()
     result = AES.new(pwd, AES.MODE_ECB)
     return result

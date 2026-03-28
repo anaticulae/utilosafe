@@ -9,19 +9,19 @@
 
 import os
 
-from utilasafe.password import decrypt as decrypt_password
-from utilasafe.password import encrypt as encrypt_password
-from utilasafe.public import decrypt
-from utilasafe.public import encrypt
-from utilasafe.rsa import create_private_key
-from utilasafe.rsa import create_public_key
-from utilasafe.rsa import load_rsa_private
-from utilasafe.rsa import load_rsa_public
-from utilasafe.rsa import write_rsa
-from utilasafe.utils import UTILASAFE_PUBLIC_KEY
-from utilasafe.utils import UTILASAFE_USER_PASSWORD
-from utilasafe.utils import public_password
-from utilasafe.utils import user_password
+from utilosafe.password import decrypt as decrypt_password
+from utilosafe.password import encrypt as encrypt_password
+from utilosafe.public import decrypt
+from utilosafe.public import encrypt
+from utilosafe.rsa import create_private_key
+from utilosafe.rsa import create_public_key
+from utilosafe.rsa import load_rsa_private
+from utilosafe.rsa import load_rsa_public
+from utilosafe.rsa import write_rsa
+from utilosafe.utils import UTILOSAFE_PUBLIC_KEY
+from utilosafe.utils import UTILOSAFE_USER_PASSWORD
+from utilosafe.utils import public_password
+from utilosafe.utils import user_password
 
 __version__ = '0.4.3'
 

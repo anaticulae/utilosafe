@@ -10,14 +10,14 @@
 import math
 
 import configo
-import utila
+import utilo
 
-import utilasafe
+import utilosafe
 
 BLOCKSIZE = 32
 
-UTILASAFE_PUBLIC_KEY = 'UTILASAFE_PUBLIC_KEY'  # nosec
-UTILASAFE_USER_PASSWORD = 'UTILASAFE_USER_PASSWORD'  # nosec
+UTILOSAFE_PUBLIC_KEY = 'UTILOSAFE_PUBLIC_KEY'  # nosec
+UTILOSAFE_USER_PASSWORD = 'UTILOSAFE_USER_PASSWORD'  # nosec
 
 
 def create_block(content: bytes, blocksize: int = BLOCKSIZE) -> bytes:
@@ -40,17 +40,17 @@ def remove_block(content: bytes) -> bytes:
     return stripped
 
 
-@utila.cacheme
+@utilo.cacheme
 def user_password() -> str:
-    result = configo.env(UTILASAFE_USER_PASSWORD, 'NOPASSWORD')
+    result = configo.env(UTILOSAFE_USER_PASSWORD, 'NOPASSWORD')
     return result
 
 
-@utila.cacheme
+@utilo.cacheme
 def public_password() -> 'RSA':
-    path = configo.env(UTILASAFE_PUBLIC_KEY, None)
+    path = configo.env(UTILOSAFE_PUBLIC_KEY, None)
     if not path:
-        utila.error(f'missing env {UTILASAFE_PUBLIC_KEY}')
+        utilo.error(f'missing env {UTILOSAFE_PUBLIC_KEY}')
         return None
-    result = utilasafe.load_rsa_public(path)
+    result = utilosafe.load_rsa_public(path)
     return result

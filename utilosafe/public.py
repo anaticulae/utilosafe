@@ -7,24 +7,24 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 """\
->>> import utilasafe.rsa
+>>> import utilosafe.rsa
 
->>> PRIVATE = utilasafe.rsa.create_private_key()
->>> PUBLIC = utilasafe.rsa.create_public_key(PRIVATE)
+>>> PRIVATE = utilosafe.rsa.create_private_key()
+>>> PUBLIC = utilosafe.rsa.create_public_key(PRIVATE)
 
 >>> encrypted = encrypt(b'Hello', public=PUBLIC)
 >>> decrypt(encrypted, PRIVATE)
 b'Hello'
 """
 
-import utilasafe.rsa
-import utilasafe.utils
+import utilosafe.rsa
+import utilosafe.utils
 
 
 def encrypt(plaintext: bytes, public: bytes = None) -> int:
     if public is None:
-        public = utilasafe.utils.public_password()
-    result = utilasafe.rsa.encrypt(
+        public = utilosafe.utils.public_password()
+    result = utilosafe.rsa.encrypt(
         plaintext,
         public,
     )
@@ -32,7 +32,7 @@ def encrypt(plaintext: bytes, public: bytes = None) -> int:
 
 
 def decrypt(ciphertext: bytes, key: str, passphrase: bytes = None) -> bytes:
-    result = utilasafe.rsa.decrypt(
+    result = utilosafe.rsa.decrypt(
         ciphertext,
         key,
         passphrase=passphrase,

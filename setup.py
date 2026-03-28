@@ -8,14 +8,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utila
+import utilo
 
 PACKAGES = [
-    'utilasafe',
+    'utilosafe',
 ]
 ENTRY_POINTS = dict(console_scripts=[
-    'safeme_create = utilasafe.cli:main',
+    'safeme_create = utilosafe.cli:main',
 ])
 
 if __name__ == "__main__":
-    utila.install(__file__)
+    utilo.install(__file__)

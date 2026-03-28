@@ -10,10 +10,10 @@
 import os
 import sys
 
-import utila
+import utilo
+import utilosafe.rsa
 
-import utilasafe
-import utilasafe.rsa
+import utilosafe
 
 
 def main():
@@ -21,16 +21,16 @@ def main():
     password = insert_password()
 
     path_private = os.path.join(cwd, 'private.pem')
-    private = utilasafe.rsa.create_private_key(passphrase=password)
-    utila.log(f'write private: {path_private}')
-    utilasafe.write_rsa(path_private, private)
+    private = utilosafe.rsa.create_private_key(passphrase=password)
+    utilo.log(f'write private: {path_private}')
+    utilosafe.write_rsa(path_private, private)
 
     path_public = os.path.join(cwd, 'public.pem')
-    public = utilasafe.rsa.create_public_key(private, passphrase=password)
-    utila.log(f'write public: {path_public}')
-    utilasafe.write_rsa(path_public, public)
+    public = utilosafe.rsa.create_public_key(private, passphrase=password)
+    utilo.log(f'write public: {path_public}')
+    utilosafe.write_rsa(path_public, public)
 
-    sys.exit(utila.SUCCESS)
+    sys.exit(utilo.SUCCESS)
 
 
 def insert_password():
