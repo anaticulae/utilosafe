@@ -9,7 +9,7 @@
 
 import math
 
-import configo
+import configos
 import utilo
 
 import utilosafe
@@ -42,13 +42,13 @@ def remove_block(content: bytes) -> bytes:
 
 @utilo.cacheme
 def user_password() -> str:
-    result = configo.env(UTILOSAFE_USER_PASSWORD, 'NOPASSWORD')
+    result = configos.env(UTILOSAFE_USER_PASSWORD, 'NOPASSWORD')
     return result
 
 
 @utilo.cacheme
 def public_password() -> 'RSA':
-    path = configo.env(UTILOSAFE_PUBLIC_KEY, None)
+    path = configos.env(UTILOSAFE_PUBLIC_KEY, None)
     if not path:
         utilo.error(f'missing env {UTILOSAFE_PUBLIC_KEY}')
         return None
