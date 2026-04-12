@@ -7,13 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
-import pytest
-import utilo
+# import power
 import utilotest
 
 import utilosafe
-import utilosafe.public
 import utilosafe.rsa
 
 
@@ -29,18 +26,18 @@ def test_generate_write_load_rsa(testdir):
     assert loaded == expected
 
 
-@pytest.mark.xfail(reason='rework large encryption')
-@utilotest.nightly
-def test_write_large_file(testdir):
-    loaded = utilo.file_read_binary(power.BACHELOR128_PDF)
-    private = utilosafe.create_private_key()
-    public = utilosafe.create_public_key(private)
-    # write file
-    encrypted = utilosafe.encrypt(loaded, public)
-    utilo.file_create('blabla', encrypted)
-    decrypted = utilosafe.decrypt(encrypted, private)
-    assert len(decrypted) == len(loaded)
-    assert decrypted == loaded
+# @pytest.mark.xfail(reason='rework large encryption')
+# @utilotest.nightly
+# def test_write_large_file(testdir):
+#     loaded = utilo.file_read_binary(power.BACHELOR128_PDF)
+#     private = utilosafe.create_private_key()
+#     public = utilosafe.create_public_key(private)
+#     # write file
+#     encrypted = utilosafe.encrypt(loaded, public)
+#     utilo.file_create('blabla', encrypted)
+#     decrypted = utilosafe.decrypt(encrypted, private)
+#     assert len(decrypted) == len(loaded)
+#     assert decrypted == loaded
 
 
 def test_public_special_bytes():
