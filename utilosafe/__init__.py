@@ -8,6 +8,9 @@
 #==============================================================================
 
 import os
+import importlib.metadata
+
+__version__ = importlib.metadata.version('utilosafe')
 
 from utilosafe.password import decrypt as decrypt_password
 from utilosafe.password import encrypt as encrypt_password
@@ -22,7 +25,5 @@ from utilosafe.utils import UTILOSAFE_PUBLIC_KEY
 from utilosafe.utils import UTILOSAFE_USER_PASSWORD
 from utilosafe.utils import public_password
 from utilosafe.utils import user_password
-
-__version__ = '0.4.3'
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
