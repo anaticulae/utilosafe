@@ -13,7 +13,7 @@ dependencies = [
     "configos>=1.0.4,<3.0.0",
 
     "cryptography>=38.0.3,<39.0.0",
-    "bcrypt>=4.0.1,<5.0.0",
+    "bcrypt>=5.0.0,<6.0.0",
 ]
 
 # Optional but recommended metadata
