@@ -1,98 +1,333 @@
-# Changelog
+# CHANGELOG
 
-Every noteable change is logged here.
 
-## v0.4.3 (2023-01-02)
+## v1.0.0 (2026-04-12)
 
-### Fix
+### Chores
 
-* solve linter error (c74c30ec1898)
+- **docker**: Add docker file
+  ([`3edeedb`](https://github.com/anaticulae/utilosafe/commit/3edeedb868f861eec0b6e74ee8b835e3772ccad3))
 
-### Chore
+- **github**: Add .github
+  ([`4b7660e`](https://github.com/anaticulae/utilosafe/commit/4b7660e7e788c5f66e978a1840f4ec900a012aa6))
 
-* use quick install (c1c9042b9ec2)
-* make requirements less strict (7bcac2ea63bf)
-* upgrade requirements.txt (36e87450eab8)
-* upgrade pipeline (fc147b9a5842)
+- **jenkins**: Remove outdated file
+  ([`b32b742`](https://github.com/anaticulae/utilosafe/commit/b32b742ff5a655f7c0ebf410d58dba505cf805d7))
 
-## v0.4.2 (2022-09-25)
+- **make**: Add makefile
+  ([`c88904b`](https://github.com/anaticulae/utilosafe/commit/c88904bb763041ce3b22120c9bc9dd15eca66e94))
 
-### Chore
+- **readme**: Rename file
+  ([`f774a42`](https://github.com/anaticulae/utilosafe/commit/f774a42618e5d62807f47689bf9bfd273e16d570))
 
-* upgrade Jenkinsfile (55bb40424ac6)
-* decrease to working crypto version (8c209977ae91)
-* upgrade requirements.txt (14c77c23fc9f)
+- **refactor**: Use new package names
+  ([`587d6bb`](https://github.com/anaticulae/utilosafe/commit/587d6bb200d1116ffb14cbb71350ace02e120dc0))
 
-## v0.4.1 (2022-09-23)
+- **requirements**: Remove outdated setup
+  ([`4c66175`](https://github.com/anaticulae/utilosafe/commit/4c6617564f4ae065d7483e745a548280b073fe39))
 
-### Fix
+- **setup**: Rename changelog
+  ([`5a7926d`](https://github.com/anaticulae/utilosafe/commit/5a7926db4823ccdde71619d503a7f74052d753fb))
 
-* ensure working without Crypto package (4c15cb1ee5f0)
+- **setup**: Use modern approach
+  ([`2e0b48d`](https://github.com/anaticulae/utilosafe/commit/2e0b48def336880e808e21ff88955a7f7779043d))
 
-### Chore
+### Code Style
 
-* add Jenkinsfile (1beaea444306)
-* upgrade requirements.txt (b424d0993ba5)
-
-## v0.4.0
-
-### Feature
-
-* use public key if no key is given (c574e1d96e08)
-* use public as a wrapper to may change algo later (0e4e0a16242b)
-* adjust interface to new API (340aef366bba)
-* use OpenSSL for encryption (6cf7a7920602)
-
-### Fix
-
-* adjust password initialization (5b7a07f3be00)
-* new API requires bytes (fcedc98d5d5e)
-
-## v0.3.1
-
-### Fix
-
-* import on runtime (fd9be45f7eca)
+- **format**: Format code
+  ([`2f20275`](https://github.com/anaticulae/utilosafe/commit/2f202757556e80072b118ffa21306bbbacffaa93))
 
 ### Documentation
 
-* adjust modules path (45cf6e42c58a)
-* Happy New Year! (d9ddb6326913)
+- **copyright**: Happy New Year!
+  ([`b70ed63`](https://github.com/anaticulae/utilosafe/commit/b70ed6366ce2195f0168644baa6fadbafaa75327))
 
-## v0.3.0
+### Refactoring
 
-### Feature
+- **configos**: Use new package name
+  ([`727bf7e`](https://github.com/anaticulae/utilosafe/commit/727bf7e8e9814436b65bd0a37fe3fa0e08895790))
 
-* reduce bits to increase speed (f8ffa8843b73)
+- **pyproject**: Improve order
+  ([`a0e5a3d`](https://github.com/anaticulae/utilosafe/commit/a0e5a3d82db35e573f82efedb6269f1e4f9b3dc3))
 
-### Fix
+### Testing
 
-* ensure that DSA is imported (2f279b17138e)
-* ensure decrypting large data (63898514bcfd)
+- **disable**: Disable till power package is available
+  ([`d69a64e`](https://github.com/anaticulae/utilosafe/commit/d69a64ec2b7117452ee606d602f1b399c34f512f))
 
-## v0.2.0
 
-### Feature
+## v0.4.3 (2023-01-02)
 
-* add environment vars to public API (0a21c86aa6ae)
+### Bug Fixes
 
-## v0.1.1
+- **linter**: Solve linter error
+  ([`c74c30e`](https://github.com/anaticulae/utilosafe/commit/c74c30ec1898e5ebf18ea758fc7039fe9026b704))
 
-### Fix
+### Chores
 
-* add missing import (c14bdcf9ab08)
+- **Jenkins**: Upgrade pipeline
+  ([`fc147b9`](https://github.com/anaticulae/utilosafe/commit/fc147b9a584283f9fd1c29b402d741622954aa13))
 
-## v0.1.0
+- **requirements**: Make requirements less strict
+  ([`7bcac2e`](https://github.com/anaticulae/utilosafe/commit/7bcac2ea63bfdd1ba481311ad788228ea45693b1))
 
-### Feature
+- **requirements**: Upgrade requirements.txt
+  ([`36e8745`](https://github.com/anaticulae/utilosafe/commit/36e87450eab8457c3a9e5ab2887d8111d25ad473))
 
-* cache accessing password (e11a168afdce)
-* load public password from file of env var (092da1ef6578)
-* add cli to generate rsa files (b08c92ab72b0)
-* add parameter to encrypt passphrase (986ede720d0e)
-* add method to load and write rsa key (6fd3cf41c51f)
-* add method to use public/private encryption (de66e5fabb9e)
-* add method to generate private and public rsa keys (7026b525809c)
-* move utila code (d199552633f0)
+- **setup**: Use quick install
+  ([`c1c9042`](https://github.com/anaticulae/utilosafe/commit/c1c9042b9ec2770f165d344a1fbe669026145a87))
 
-## v0.0.0 Initial release
+### Code Style
+
+- **imports**: Organize imports
+  ([`e65248b`](https://github.com/anaticulae/utilosafe/commit/e65248b1dceee815ce4cae8b604d12f5b0bb9d01))
+
+
+## v0.4.2 (2022-09-25)
+
+### Chores
+
+- **ci**: Upgrade Jenkinsfile
+  ([`55bb404`](https://github.com/anaticulae/utilosafe/commit/55bb40424ac6b4e1a31174722bad3275bf9fbd12))
+
+- **requirements**: Decrease to working crypto version
+  ([`8c20997`](https://github.com/anaticulae/utilosafe/commit/8c209977ae915d460dddf36217060368d333f380))
+
+- **requirements**: Upgrade requirements.txt
+  ([`14c77c2`](https://github.com/anaticulae/utilosafe/commit/14c77c23fc9f87d2b050e519545375d89be6cad6))
+
+### Testing
+
+- **linux**: Enable tests
+  ([`62fee23`](https://github.com/anaticulae/utilosafe/commit/62fee2363c0acc4a7a1b40a757e9900a2a7ce151))
+
+- **rsa**: Disable large encryption
+  ([`c6bb760`](https://github.com/anaticulae/utilosafe/commit/c6bb760e39b179f81a5584b4d336de8bd51095c6))
+
+
+## v0.4.1 (2022-09-23)
+
+### Bug Fixes
+
+- **password**: Ensure working without Crypto package
+  ([`4c15cb1`](https://github.com/anaticulae/utilosafe/commit/4c15cb1ee5f04cf6a675a1b58a2ed701965eee3a))
+
+### Chores
+
+- **ci**: Add Jenkinsfile
+  ([`1beaea4`](https://github.com/anaticulae/utilosafe/commit/1beaea444306107363eca0d24197e28fb0da7479))
+
+- **requirements**: Upgrade requirements.txt
+  ([`b424d09`](https://github.com/anaticulae/utilosafe/commit/b424d0993ba5f5780c4521dec33063336c888aba))
+
+### Code Style
+
+- **changelog**: Upper case to detect with semantic release
+  ([`35af38c`](https://github.com/anaticulae/utilosafe/commit/35af38c6ec16f5782c26e64e2e1b2a75ecb657c0))
+
+### Testing
+
+- **disable**: Disable test on linux
+  ([`3e166f4`](https://github.com/anaticulae/utilosafe/commit/3e166f4e2d0b394a2164ec971d8af4a2c8b06f9b))
+
+- **fix**: Make test password independent
+  ([`6f5263b`](https://github.com/anaticulae/utilosafe/commit/6f5263ba031d4816acccb7fa19bb81f164fd9408))
+
+
+## v0.4.0 (2022-08-15)
+
+### Bug Fixes
+
+- **cli**: New API requires bytes
+  ([`fcedc98`](https://github.com/anaticulae/utilosafe/commit/fcedc98d5d5eac7ed79471d632c66ac82f3e2dfd))
+
+- **rsa**: Adjust password initialization
+  ([`5b7a07f`](https://github.com/anaticulae/utilosafe/commit/5b7a07f3be00b8a2cd74c6abc39bed529a26cbf4))
+
+### Chores
+
+- **config**: Move config
+  ([`89ca41c`](https://github.com/anaticulae/utilosafe/commit/89ca41c848cd39151ee8b95e1a76707d9e17b293))
+
+- **requirements**: Add bcrypt for rsa
+  ([`445638e`](https://github.com/anaticulae/utilosafe/commit/445638e66fa6eb6ab9dfc2531eb1d9042004de0b))
+
+- **requirements**: Add configo
+  ([`e745019`](https://github.com/anaticulae/utilosafe/commit/e7450190e750429d1609e79c91cc8ec538ed5aef))
+
+- **requirements**: Replace crypto package
+  ([`151f271`](https://github.com/anaticulae/utilosafe/commit/151f271bd9a07bb95ab2bcb8e392f33dbf8ee87b))
+
+- **requirements**: Upgrade requirements.txt
+  ([`3e326f3`](https://github.com/anaticulae/utilosafe/commit/3e326f381d99e2c75aa3b9d50abfc8f350bc7579))
+
+### Code Style
+
+- **baw**: Add missing copyright header
+  ([`018e25f`](https://github.com/anaticulae/utilosafe/commit/018e25ff7cc4b9ed54bef5321f6c111e54b5209f))
+
+### Features
+
+- **public**: Use public as a wrapper to may change algo later
+  ([`0e4e0a1`](https://github.com/anaticulae/utilosafe/commit/0e4e0a16242b80ea6cdb7bbeab07b1e990d8d5c8))
+
+- **public**: Use public key if no key is given
+  ([`c574e1d`](https://github.com/anaticulae/utilosafe/commit/c574e1d96e08b560c7e1a68433219ef1a809129d))
+
+- **rsa**: Adjust interface to new API
+  ([`340aef3`](https://github.com/anaticulae/utilosafe/commit/340aef366bba8415deb110cf75eaba486f05c749))
+
+- **rsa**: Use OpenSSL for encryption
+  ([`6cf7a79`](https://github.com/anaticulae/utilosafe/commit/6cf7a79206020df03c1e5e836480495c07b34799))
+
+### Refactoring
+
+- **API**: Rename public API
+  ([`d327aa9`](https://github.com/anaticulae/utilosafe/commit/d327aa952dcfe94eec1f41e9bcace7a50a8d5687))
+
+- **cli**: Ease testing
+  ([`9c4056e`](https://github.com/anaticulae/utilosafe/commit/9c4056e63cee0370641c704da13c4903cdea744a))
+
+- **rsa**: Reduce complexity
+  ([`8ee0ed6`](https://github.com/anaticulae/utilosafe/commit/8ee0ed6172aefdf197ea1fe7bbd598ad7eabcdcd))
+
+- **utils**: Replace with configo code
+  ([`4c0eeb5`](https://github.com/anaticulae/utilosafe/commit/4c0eeb54efc715f616c1a33c45c1b9755d3b0785))
+
+- **utils**: Replace with utila code
+  ([`4546302`](https://github.com/anaticulae/utilosafe/commit/454630271cd06ef8058a74ee0a7cf01fee877db6))
+
+### Testing
+
+- **API**: Adjust unit tests to new API
+  ([`d0eb232`](https://github.com/anaticulae/utilosafe/commit/d0eb232d267984b0624a41c2ec04af13aac972cb))
+
+- **cli**: Increase test coverage
+  ([`7a9339a`](https://github.com/anaticulae/utilosafe/commit/7a9339a40c3abfd41f983b3fc6db2b5e30360687))
+
+
+## v0.3.1 (2022-02-22)
+
+### Bug Fixes
+
+- **rsa**: Import on runtime
+  ([`fd9be45`](https://github.com/anaticulae/utilosafe/commit/fd9be45f7ecac2230d105ca11769b973a73f7d90))
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`05801a3`](https://github.com/anaticulae/utilosafe/commit/05801a301530f2c2d5bc378b5ce5ee6e9ed03fd0))
+
+- **test**: Keep longrun fast
+  ([`3594b98`](https://github.com/anaticulae/utilosafe/commit/3594b98d1bf7df21ff23e4700ed7697cf0380d1c))
+
+### Documentation
+
+- **copyright**: Happy New Year!
+  ([`d9ddb63`](https://github.com/anaticulae/utilosafe/commit/d9ddb6326913a1f8e368b586641d73d47178f2b4))
+
+- **fix**: Adjust modules path
+  ([`45cf6e4`](https://github.com/anaticulae/utilosafe/commit/45cf6e42c58a12c0ac288f500e77b9a876813520))
+
+
+## v0.3.0 (2021-06-10)
+
+### Bug Fixes
+
+- **public**: Ensure decrypting large data
+  ([`6389851`](https://github.com/anaticulae/utilosafe/commit/63898514bcfd7e4c03ca9fb4109119fdd759ed96))
+
+- **rsa**: Ensure that DSA is imported
+  ([`2f279b1`](https://github.com/anaticulae/utilosafe/commit/2f279b17138edd0e8841b39e45548edd3ba4d4a0))
+
+### Chores
+
+- **requirements**: Add power package
+  ([`3da8e13`](https://github.com/anaticulae/utilosafe/commit/3da8e134fca44ae31190af520634b5ee506126cd))
+
+- **test**: Keep dev build fast
+  ([`573fea9`](https://github.com/anaticulae/utilosafe/commit/573fea9d534866932a9cfa1e1053522ffaabec30))
+
+### Features
+
+- **rsa**: Reduce bits to increase speed
+  ([`f8ffa88`](https://github.com/anaticulae/utilosafe/commit/f8ffa8843b73ae39c30209b9ea5a55ccf6d3221c))
+
+### Refactoring
+
+- **public**: Improve code style
+  ([`33e479c`](https://github.com/anaticulae/utilosafe/commit/33e479c00663a212182d7ae1c86e77326bdf8c97))
+
+- **public**: Replace with python code
+  ([`5f0b0bf`](https://github.com/anaticulae/utilosafe/commit/5f0b0bf6fa698856b8d3cb7ce8072fd43b45df42))
+
+
+## v0.2.0 (2021-06-07)
+
+### Features
+
+- **API**: Add environment vars to public API
+  ([`0a21c86`](https://github.com/anaticulae/utilosafe/commit/0a21c86aa6ae6c8f49898ca1a2f1fde63c2a6558))
+
+
+## v0.1.1 (2021-06-06)
+
+### Bug Fixes
+
+- **import**: Add missing import
+  ([`c14bdcf`](https://github.com/anaticulae/utilosafe/commit/c14bdcf9ab08b6b3c5c55566bf23d927961a2e79))
+
+### Code Style
+
+- **format**: Format code
+  ([`90e0a0b`](https://github.com/anaticulae/utilosafe/commit/90e0a0b395242ff450bf1a76bcaec55379e2115e))
+
+
+## v0.1.0 (2021-06-06)
+
+### Chores
+
+- **requirements**: Add crypto package
+  ([`96aba48`](https://github.com/anaticulae/utilosafe/commit/96aba4826d8256ce495c8abce1d1359aa3d03787))
+
+- **requirements**: Add utila package
+  ([`adc7d55`](https://github.com/anaticulae/utilosafe/commit/adc7d55db380cb0c73e6e7f9d9850077265c2867))
+
+- **requirements**: Add utilatest
+  ([`8698ed3`](https://github.com/anaticulae/utilosafe/commit/8698ed31c43aead61595ed2fe5bbf177646dcc22))
+
+### Features
+
+- **cli**: Add cli to generate rsa files
+  ([`b08c92a`](https://github.com/anaticulae/utilosafe/commit/b08c92ab72b0ba6a8f564b6cdce0cd89578308cb))
+
+- **password**: Move utila code
+  ([`d199552`](https://github.com/anaticulae/utilosafe/commit/d199552633f01d7724f668751b1a8422d23eb295))
+
+- **public**: Add method to use public/private encryption
+  ([`de66e5f`](https://github.com/anaticulae/utilosafe/commit/de66e5fabb9ef6bb9be45c96ce8913eeb4f64b1e))
+
+- **public**: Load public password from file of env var
+  ([`092da1e`](https://github.com/anaticulae/utilosafe/commit/092da1ef6578d3fdeb0a2eea543a65c4d67dd95b))
+
+- **rsa**: Add method to generate private and public rsa keys
+  ([`7026b52`](https://github.com/anaticulae/utilosafe/commit/7026b525809c82628803f5ed528f41d81fea9bfd))
+
+- **rsa**: Add method to load and write rsa key
+  ([`6fd3cf4`](https://github.com/anaticulae/utilosafe/commit/6fd3cf41c51f65e8627bba7f67dca15377e670cd))
+
+- **rsa**: Add parameter to encrypt passphrase
+  ([`986ede7`](https://github.com/anaticulae/utilosafe/commit/986ede720d0e8388dc435f6107521bab7686f5c5))
+
+- **utils**: Cache accessing password
+  ([`e11a168`](https://github.com/anaticulae/utilosafe/commit/e11a168afdceb2309672f20d18ca2074ad248252))
+
+### Testing
+
+- **cli**: Run password file generator
+  ([`05e9c2c`](https://github.com/anaticulae/utilosafe/commit/05e9c2cc1fe79876a6b9efb811d4b4df16f17e7f))
+
+
+## v0.0.0 (2021-06-06)
+
+- Initial Release
