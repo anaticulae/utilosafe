@@ -11,9 +11,9 @@ import os
 import sys
 
 import utilo
-import utilosafe.rsa
 
 import utilosafe
+import utilosafe.rsa
 
 
 def main():

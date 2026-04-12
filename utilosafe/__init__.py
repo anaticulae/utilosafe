@@ -7,8 +7,8 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-import os
 import importlib.metadata
+import os
 
 __version__ = importlib.metadata.version('utilosafe')
 

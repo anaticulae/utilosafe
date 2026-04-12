@@ -8,9 +8,9 @@
 # =============================================================================
 
 import utilo
-import utilosafe.utils
 
 import utilosafe
+import utilosafe.utils
 
 
 def encrypt(plaintext: bytes) -> bytes:

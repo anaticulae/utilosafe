@@ -10,11 +10,11 @@
 import power
 import pytest
 import utilo
-import utilosafe.public
-import utilosafe.rsa
 import utilotest
 
 import utilosafe
+import utilosafe.public
+import utilosafe.rsa
 
 
 @utilotest.longrun

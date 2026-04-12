@@ -11,10 +11,10 @@ import functools
 import os
 
 import utilo
-import utilosafe.cli
 import utilotest
 
 import utilosafe
+import utilosafe.cli
 
 run = functools.partial(
     utilotest.run_cov,
