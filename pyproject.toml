@@ -32,6 +32,7 @@ safeme_create = "utilosafe.cli:main"
 
 [project.optional-dependencies]
 dev = [
+    "hoverpower>=1.8.0,<2.0.0",
     "utilotest>=1.1.1,<2.0.0",
 ]
 
