@@ -1,6 +1,43 @@
 # CHANGELOG
 
 
+## v1.0.1 (2026-11-19)
+
+### Chores
+
+- **dependabot**: Improve dependabot
+  ([`5eada01`](https://github.com/anaticulae/utilosafe/commit/5eada019c0c1a706291a5a2fc7d4c9f7efa7075f))
+
+- **docker**: Add missing files
+  ([`fb31df1`](https://github.com/anaticulae/utilosafe/commit/fb31df154f339d02799593543d6787e864547afb))
+
+- **docker**: Add missing test env
+  ([`faf96ff`](https://github.com/anaticulae/utilosafe/commit/faf96ff0d69ea82ec6793bb5c4a6429fbd1d9607))
+
+- **docker**: Upgrade docker base images
+  ([`0730f28`](https://github.com/anaticulae/utilosafe/commit/0730f2842d6d088b0e07dca18b826e1934b50029))
+
+- **make**: Do not release twice
+  ([`9361ec3`](https://github.com/anaticulae/utilosafe/commit/9361ec3b4b7aed076c4572aeea628b42c1b41e70))
+
+- **pyproject**: Release on every commit
+  ([`b17a575`](https://github.com/anaticulae/utilosafe/commit/b17a575f8b0b42f49e7225cf9889031a55c77d06))
+
+- **pyproject**: Remove outdated dependency
+  ([`90ead88`](https://github.com/anaticulae/utilosafe/commit/90ead886f13eb892639f38e13093257e8fa8db8e))
+
+- **readme**: Add missing license
+  ([`6596a47`](https://github.com/anaticulae/utilosafe/commit/6596a475c1d3d561a31f3bc80d163565630034d1))
+
+- **requirements**: Upgrade pyproject.toml
+  ([`338b78d`](https://github.com/anaticulae/utilosafe/commit/338b78db3516fa8287a8bc667af0539db7eba4e9))
+
+### Code Style
+
+- **make**: Format code
+  ([`a9e367b`](https://github.com/anaticulae/utilosafe/commit/a9e367b1310a0a5c66b5625e490df70679a0ba1d))
+
+
 ## v1.0.0 (2026-04-12)
 
 ### Chores
