@@ -11,7 +11,7 @@ FROM ghcr.io/anaticulae/baw:v1.90.4
 
 WORKDIR /var/install
 
-COPY pyproject.toml .
+COPY pyproject.toml LICENSE README .
 
 RUN pip install .[dev]
 RUN pip install .
