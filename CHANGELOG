@@ -1,6 +1,20 @@
 # CHANGELOG
 
 
+## v1.0.2 (2026-11-19)
+
+### Chores
+
+- **github**: Do not run test twice
+  ([`4966fe5`](https://github.com/anaticulae/utilosafe/commit/4966fe54f5b0a318f358c11ea4b866db6cd41e21))
+
+- **github**: Fix name
+  ([`fee7925`](https://github.com/anaticulae/utilosafe/commit/fee792516ffa9365833754cdc202aefa4123335f))
+
+- **github**: Upgrade actions
+  ([`7fa102c`](https://github.com/anaticulae/utilosafe/commit/7fa102c5efa17c08a674adaf5c842e0fe7753499))
+
+
 ## v1.0.1 (2026-11-19)
 
 ### Chores
