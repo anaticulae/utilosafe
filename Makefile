@@ -5,33 +5,51 @@ CURDIR := $(CURDIR)
 
 NAME = utilosafe
 IMAGE := $(NAME):$(VERSION)
-IMAGE_BASE_NAME := ghcr.io/anaticulae/$(IMAGE)
+IMAGE_BASE := ghcr.io/anaticulae/$(IMAGE)
 
 docker-build:
-	docker build -t $(IMAGE_BASE_NAME) .
+	docker build -t $(IMAGE_BASE) .
 
-docker-build-base:
-	docker build -f Dockerfile -t $(IMAGE_BASE_NAME) .
-
-docker-upload-base:
-	docker push $(IMAGE_BASE_NAME)
+docker-upload:
+	docker push $(IMAGE_BASE)
 
 docker-doctest: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_BASE_NAME) "baw test docs"
+	docker run \
+		-v $(CURDIR):/var/workdir \
+		$(IMAGE_BASE) \
+		"baw test docs"
 
 docker-fasttest: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_BASE_NAME) "baw test fast"
+	docker run \
+		-v $(CURDIR):/var/workdir \
+		$(IMAGE_BASE) \
+		"baw test fast"
 
 docker-longtest: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_BASE_NAME) "baw test long"
+	docker run \
+		-v $(CURDIR):/var/workdir \
+		$(IMAGE_BASE) \
+		"baw test long"
 
 docker-alltest: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_BASE_NAME) "baw test all"
+	docker run \
+		-v $(CURDIR):/var/workdir \
+		$(IMAGE_BASE) \
+		"baw test all"
 
 docker-lint: docker-build
-	docker run -v $(CURDIR):/var/workdir $(IMAGE_BASE_NAME) "baw lint all"
+	docker run \
+		-v $(CURDIR):/var/workdir \
+		$(IMAGE_BASE) \
+		"baw lint all"
 
 docker-release: docker-build
-	docker run -v $(CURDIR):/var/workdir\
-			-e GH_TOKEN=$(GH_TOKEN) $(IMAGE_BASE_NAME) \
-			"baw release --no_test --no_linter --no_sync"
+	@if git describe --exact-match --tags HEAD >/dev/null 2>&1; then\
+		echo "Current commit is already tagged. Skipping release."; \
+	else \
+		docker run \
+			-v $(CURDIR):/var/workdir \
+			-e GH_TOKEN \
+			$(IMAGE_BASE) \
+			"baw release --no_test --no_linter"; \
+	fi
