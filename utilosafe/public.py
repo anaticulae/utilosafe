@@ -21,7 +21,7 @@ import utilosafe.rsa
 import utilosafe.utils
 
 
-def encrypt(plaintext: bytes, public: bytes = None) -> int:
+def encrypt(plaintext: bytes, public: bytes | None = None) -> bytes:
     if public is None:
         public = utilosafe.utils.public_password()
     result = utilosafe.rsa.encrypt(
