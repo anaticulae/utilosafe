@@ -7,20 +7,15 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import hoverpower
-import utilo
-import utilotest
+import os
 
 import utilosafe
 
 
-@utilotest.nightly
-def test_write_large_file(testdir):
-    loaded = utilo.file_read_binary(hoverpower.BACHELOR128_PDF)
-    # write file
+def test_encrypt_large_data():
+    loaded = os.urandom(1024 * 1024 * 120)  # 120 MB
     encrypted = utilosafe.encrypt(loaded)
     assert encrypted != loaded
-    utilo.file_create_binary('blabla', encrypted)
     decrypted = utilosafe.decrypt(encrypted)
     assert len(decrypted) == len(loaded)
     assert decrypted == loaded
