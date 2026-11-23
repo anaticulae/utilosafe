@@ -7,7 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import os
+
 import utilo
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 
 import utilosafe
 import utilosafe.utils
@@ -26,32 +30,52 @@ def encrypt(plaintext: bytes) -> bytes:
             encoding='utf8',
             errors='xmlcharrefreplace',
         )
-    plaintext = utilosafe.utils.create_block(plaintext)
-    ciphertext = aes().encrypt(plaintext)
-    return ciphertext
+    nonce = os.urandom(12)
+    key, salt = aes()
+    ciphertext = AESGCM(key).encrypt(nonce, plaintext, None)
+    # Format: salt (16) + nonce (12) + ciphertext + tag (16)
+    return salt + nonce + ciphertext
 
 
-def decrypt(ciphertext: bytes, string: bool = False) -> bytes:
+def decrypt(ciphertext: bytes) -> bytes:
     """Convert cipher text to plain text."""
-    plaintext = aes().decrypt(ciphertext)
-    plaintext = utilosafe.utils.remove_block(plaintext)
-    if string:
-        plaintext: str = plaintext.decode(encoding='utf8')
+
+    salt = ciphertext[:16]
+    nonce = ciphertext[16:28]
+    ciphertext = ciphertext[28:]
+
+    key = derive_key(load_password(), salt)
+
+    plaintext = AESGCM(key).decrypt(
+        nonce,
+        ciphertext,
+        None,
+    )
     return plaintext
 
 
-def aes():
+def derive_key(password: bytes, salt: bytes) -> bytes:
+    kdf = Scrypt(
+        salt=salt,
+        length=32,  # AES-256
+        n=2**15,
+        r=8,
+        p=1)
+    return kdf.derive(password)
+
+
+def load_password():
     pwd = utilosafe.user_password()
     # normalize password
     pwd = utilo.secure_hash(pwd, digits=32)
     pwd: bytes = pwd.encode('utf8')
-    # TODO: VERIFY PROS AND CONS OF MODE
-    try:
-        from Crypto.Cipher import AES  # nosec # TODO: VERIFY THIS
-    except ImportError:
-        utilo.error('could not import Crypto.Cipher')
-        return NoPassword()
-    result = AES.new(pwd, AES.MODE_ECB)
+    return pwd
+
+
+def aes():
+    salt = os.urandom(16)
+    pwd = load_password()
+    result = derive_key(pwd, salt), salt
     return result
 
 
