@@ -7,13 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import utilotest
-
 import utilosafe
 import utilosafe.rsa
 
 
-@utilotest.longrun
 def test_generate_write_load_rsa(testdir):
     outfile = testdir.tmpdir.join('rsa')
     private = utilosafe.create_private_key()

@@ -24,7 +24,6 @@ run = functools.partial(
 )
 
 
-@utilotest.longrun
 def test_generate_cli(testdir, monkeypatch):
     password = b'helm'
     utilo.file_create_binary('password', password)
