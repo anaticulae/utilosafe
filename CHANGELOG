@@ -1,6 +1,40 @@
 # CHANGELOG
 
 
+## v1.1.0 (2026-11-23)
+
+### Bug Fixes
+
+- **password**: Remove outdated library
+  ([`9e18038`](https://github.com/anaticulae/utilosafe/commit/9e18038ee1e61bb88919100a1748b6ceb84fb330))
+
+### Chores
+
+- **github**: Remove complex test strategy
+  ([`b74a3ce`](https://github.com/anaticulae/utilosafe/commit/b74a3cea6929686e6be1faf17389c85a7607bf5d))
+
+### Documentation
+
+- **public**: Add data types
+  ([`feb65f0`](https://github.com/anaticulae/utilosafe/commit/feb65f07c05e9f7bd4d72f0110c3725d18bfe76d))
+
+### Features
+
+- **algo**: Use aes as default
+  ([`bb58232`](https://github.com/anaticulae/utilosafe/commit/bb58232a8273a9a45665ee54ded2c96f48379079))
+
+### Testing
+
+- **aes**: Move unit test
+  ([`80131c4`](https://github.com/anaticulae/utilosafe/commit/80131c4ce3ec06f4afe92b4f3502c6ca058dc8b3))
+
+- **aes**: Use random test data generator to reduce dependencies
+  ([`af1d48f`](https://github.com/anaticulae/utilosafe/commit/af1d48fa9d2e62b10c13e48b7ca268b8a218ef4a))
+
+- **conftest**: Setup random password
+  ([`0c079b2`](https://github.com/anaticulae/utilosafe/commit/0c079b2282cd7411fb1895c0a042f76ab6140d35))
+
+
 ## v1.0.3 (2026-11-23)
 
 ### Deps
