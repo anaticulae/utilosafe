@@ -41,8 +41,8 @@ Repository = "https://github.com/anaticulae/utilosafe"
 
 [build-system]
 requires = [
-    "setuptools>=82.0.1",
-    "wheel>=0.46.3",
+    "setuptools>=84.2.1",
+    "wheel>=0.48.0",
 ]
 build-backend = "setuptools.build_meta"
 
