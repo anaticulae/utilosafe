@@ -12,10 +12,10 @@ import os
 
 __version__ = importlib.metadata.version('utilosafe')
 
-from utilosafe.password import decrypt as decrypt_password
-from utilosafe.password import encrypt as encrypt_password
-from utilosafe.public import decrypt
-from utilosafe.public import encrypt
+from utilosafe.password import decrypt as decrypt_aes
+from utilosafe.password import encrypt as encrypt_aes
+from utilosafe.public import decrypt as decrypt_rsa
+from utilosafe.public import encrypt as encrypt_rsa
 from utilosafe.rsa import create_private_key
 from utilosafe.rsa import create_public_key
 from utilosafe.rsa import load_rsa_private
@@ -25,5 +25,8 @@ from utilosafe.utils import UTILOSAFE_PUBLIC_KEY
 from utilosafe.utils import UTILOSAFE_USER_PASSWORD
 from utilosafe.utils import public_password
 from utilosafe.utils import user_password
+
+decrypt = decrypt_aes
+encrypt = encrypt_aes
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))

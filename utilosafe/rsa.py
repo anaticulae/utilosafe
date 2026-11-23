@@ -97,7 +97,7 @@ def write_rsa(path, key: bytes):
 def load_rsa_private(
     path,
     passphrase: bytes = None,
-) -> '_SSH_PRIVATE_KEY_TYPES':
+) -> serialization.SSHPrivateKeyTypes:
     if isinstance(path, str):
         loaded = utilo.file_read_binary(path)
     else:
@@ -109,7 +109,7 @@ def load_rsa_private(
     return result
 
 
-def load_rsa_public(path) -> '_SSH_PUBLIC_KEY_TYPES':
+def load_rsa_public(path) -> serialization.SSHPublicKeyTypes:
     data = utilo.file_read_binary(path)
     result = serialization.load_ssh_public_key(data=data)
     return result
