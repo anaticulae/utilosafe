@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.0.3 (2026-11-23)
+
+### Deps
+
+- **dependabot**: Bump the all-dependencies group across 1 directory with 2 updates
+  ([`7e3aecc`](https://github.com/anaticulae/utilosafe/commit/7e3aecc32c353a4d4e4baa1d28369d942abd30af))
+
+
 ## v1.0.2 (2026-11-19)
 
 ### Chores
