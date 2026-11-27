@@ -8,7 +8,7 @@ authors = [
 ]
 dependencies = [
     "bcrypt>=5.0.0,<6.0.0",
-    "configos>=1.0.4,<3.0.0",
+    "configos>=1.1.0,<3.0.0",
     "cryptography>=50.0.2,<51.0.0",
     "utilo>=2.112.3,<3.0.0",
 ]
