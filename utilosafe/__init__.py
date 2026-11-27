@@ -26,6 +26,10 @@ from utilosafe.utils import UTILOSAFE_USER_PASSWORD
 from utilosafe.utils import public_password
 from utilosafe.utils import user_password
 
+# TODO: MAY REMOVE LATER?
+decrypt_password = decrypt_aes
+encrypt_password = encrypt_aes
+
 decrypt = decrypt_aes
 encrypt = encrypt_aes
 
