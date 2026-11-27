@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v1.1.1 (2026-11-27)
+
+### Bug Fixes
+
+- **API**: Do not brake API
+  ([`86d09da`](https://github.com/anaticulae/utilosafe/commit/86d09da69623609f111889796aee42a695af40c9))
+
+### Chores
+
+- **requirements**: Upgrade pyproject.toml
+  ([`376d944`](https://github.com/anaticulae/utilosafe/commit/376d944d146dfa73b072a70a4b8cc6d05fe267c7))
+
+
 ## v1.1.0 (2026-11-23)
 
 ### Bug Fixes
